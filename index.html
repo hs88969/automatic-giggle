@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Himanshu Singh Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+  /* Reset & base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #f0f0f0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    padding-top: 60px; /* For nav spacing */
+  }
+  a {
+    color: #ffee58;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #ffd740;
+  }
+
+  /* Navigation bar */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.85);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
+  nav .nav-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  nav .nav-buttons button {
+    background: #ffee58;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 18px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(255, 235, 88, 0.6);
+  }
+  nav .nav-buttons button:hover {
+    background: #ffd740;
+    transform: scale(1.1);
+  }
+  nav .nav-buttons button:focus {
+    outline: 2px solid #333;
+    outline-offset: 2px;
+  }
+
+  header {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: rgba(0,0,0,0.3);
+  }
+  header h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 0.2em;
+    letter-spacing: 3px;
+    animation: slideInDown 1s ease forwards;
+  }
+  header h2 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    color: #ffeb3b;
+    margin-bottom: 0.4em;
+    animation: slideInUp 1s ease forwards;
+  }
+  section {
+    padding: 60px 20px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    background: rgba(0,0,0,0.15);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    margin-bottom: 40px;
+  }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ffee58;
+    padding-bottom: 8px;
+  }
+  p, li {
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  ul.skills-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  ul.skills-list li {
+    background: #ffee58;
+    color: #333;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(255, 235, 88, 0.4);
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  ul.skills-list li:hover {
+    transform: scale(1.1);
+  }
+  .image-section {
+    max-width: 250px;
+    margin: 40px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    border: 5px solid #ffee58;
+    animation: pulse 6s infinite;
+  }
+  .image-section img {
+    width: 100%;
+    display: block;
+  }
+  footer {
+    background: #222;
+    padding: 30px 20px;
+    text-align: center;
+    color: #fff;
+    border-top: 4px solid #ffee58;
+  }
+  footer .social-icons {
+    margin: 15px 0 10px;
+  }
+  footer .social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+    color: #ffee58;
+    font-size: 28px;
+    transition: color 0.4s ease;
+  }
+  footer .social-icons a:hover {
+    color: #ffeb3b;
+  }
+  footer small {
+    font-weight: 300;
+  }
+
+  /* Contact form styles */
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  form input, form textarea {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    resize: vertical;
+  }
+  form button {
+    background: #ffee58;
+    color: #333;
+    border: none;
+    font-weight: 700;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+  form button:hover {
+    background: #ffd740;
+  }
+  .form-message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+  }
+  .form-message.success {
+    color: #4caf50;
+  }
+  .form-message.error {
+    color: #f44336;
+  }
+
+  /* Animations */
+  @keyframes slideInDown {
+    0% {opacity:0; transform: translateY(-40px);}
+    100% {opacity:1; transform: translateY(0);}
+  }
+  @keyframes slideInUp {
+    0% {opacity:0; transform: translateY(30px);}
+    100% {opacity:1; transform: translateY(0);}
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 25px rgba(255, 235, 88, 0.8); }
+    50% { box-shadow: 0 12px 40px rgba(255, 235, 88, 0.4); }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2.8rem;
+    }
+    section {
+      padding: 40px 15px 30px;
+    }
+    nav .nav-buttons {
+      gap: 10px;
+    }
+    nav .nav-buttons button {
+      font-size: 0.9rem;
+      padding: 8px 14px;
+    }
+  }
+</style>
+<!-- FontAwesome CDN for social icons -->
+<script src="https://kit.fontawesome.com/a81368914c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav aria-label="Primary navigation">
+  <div class="nav-buttons">
+    <button type="button" onclick="document.getElementById('aboutMe').scrollIntoView({behavior: 'smooth'})" aria-label="Go to About Me section">About Me</button>
+    <button type="button" onclick="document.getElementById('skills').scrollIntoView({behavior: 'smooth'})" aria-label="Go to Skills section">Skills</button>
+    <button type="button" onclick="document.getElementById('qualifications').scrollIntoView({behavior: 'smooth'})" aria-label="Go to Qualifications section">Qualifications</button>
+    <button type="button" onclick="document.getElementById('workProjects').scrollIntoView({behavior: 'smooth'})" aria-label="Go to Work and Projects section">Work & Projects</button>
+    <button type="button" onclick="document.getElementById('contactMe').scrollIntoView({behavior: 'smooth'})" aria-label="Go to Contact Me section">Contact Me</button>
+  </div>
+</nav>
+
+<header>
+  <h1>Himanshu Singh</h1>
+  <h2>BTech CSE Student | Programmer</h2>
+</header>
+
+<section id="aboutMe">
+  <h3>About Me</h3>
+  <p>Hello! I am Himanshu Singh, currently pursuing BTech in Computer Science and Engineering from Kashi Institute of Technology. I have a passion for programming and have learned multiple languages including C, C++, Python, HTML, CSS, and JavaScript. I enjoy solving complex problems and building interactive web applications.</p>
+</section>
+
+<section id="skills">
+  <h3>Skills</h3>
+  <ul class="skills-list">
+    <li>C</li>
+    <li>C++</li>
+    <li>Python</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+</section>
+
+<section id="qualifications">
+  <h3>Qualifications</h3>
+  <ul>
+    <li>Higher Secondary - Mahatma JF Public School</li>
+    <li>Intermediate 10+2 - Devvani Intermediate College</li>
+    <li>Currently pursuing BTech - Computer Science and Engineering - Kashi Institute of Technology</li>
+  </ul>
+</section>
+
+<section id="workProjects">
+  <h3>Work & Projects</h3>
+  <p>Currently, I am exploring various projects in web development and programming. Here are some examples of what I am working on:</p>
+  <ul>
+    <li><strong>Portfolio Website:</strong> This interactive portfolio showcasing my skills and projects.</li>
+    <li><strong>Web Apps:</strong> Developing small web applications using HTML, CSS, and JavaScript.</li>
+    <li><strong>Programming Problems:</strong> Solving algorithmic challenges using C++ and Python.</li>
+  </ul>
+</section>
+
+<section class="image-section" aria-label="Profile image">
+  <!-- Placeholder image, user can replace with their own -->
+  <img src="https://i.pravatar.cc/250?img=10" alt="Himanshu Singh Profile Image" />
+</section>
+
+<section id="contactMe">
+  <h3>Contact Me</h3>
+  <form id="contactForm" action="https://formspree.io/f/mnqwqdlr" method="POST">
+    <input type="hidden" name="_to" value="hs1907658200@gmail.com" />
+    <label for="name">Name<span aria-hidden="true" style="color:#ff5252;"> *</span></label>
+    <input type="text" id="name" name="name" placeholder="Your Name" required />
+    <label for="email">Email<span aria-hidden="true" style="color:#ff5252;"> *</span></label>
+    <input type="email" id="email" name="_replyto" placeholder="your.email@example.com" required />
+    <label for="message">Message<span aria-hidden="true" style="color:#ff5252;"> *</span></label>
+    <textarea id="message" name="message" placeholder="Write your message here" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+    <div id="formMessage" class="form-message" aria-live="polite"></div>
+  </form>
+</section>
+
+<footer>
+  <div class="social-icons" aria-label="Social media links">
+    <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/yourphonenumber" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+  </div>
+  <small>© 2024 Himanshu Singh. All rights reserved.</small>
+</footer>
+
+<script>
+  // Animate sections on scroll fade-in
+  const sections = document.querySelectorAll('section');
+  function animateOnScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop < triggerBottom) {
+        section.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', animateOnScroll);
+  window.addEventListener('load', animateOnScroll);
+
+  // Contact form submission with AJAX to Formspree to avoid page reload
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formMessage.textContent = '';
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      if (response.ok) {
+        formMessage.textContent = 'Thank you! Your message has been sent.';
+        formMessage.className = 'form-message success';
+        form.reset();
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          formMessage.textContent = data.errors.map(error => error.message).join(', ');
+        } else {
+          formMessage.textContent = 'Oops! There was a problem sending your message.';
+        }
+        formMessage.className = 'form-message error';
+      }
+    } catch (error) {
+      formMessage.textContent = 'Oops! There was a problem sending your message.';
+      formMessage.className = 'form-message error';
+    }
+  });
+</script>
+
+</body>
+</html>
+
